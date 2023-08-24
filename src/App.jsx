@@ -6,6 +6,7 @@ import {
   Route,
   BrowserRouter as Router, Routes,
 } from 'react-router-dom';
+import DetailItem from './components/DetailItem';
 import Details from './components/Details';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -23,7 +24,10 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        <Route path="details" element={<Details items={items} />} />
+        <Route path="/details" element={<Details items={items} />}>
+          <Route path=":id" element={<DetailItem />} />
+          <Route index element={<div>No Item Selected</div>} />
+        </Route>
         <Route path="/" element={<Home items={items} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

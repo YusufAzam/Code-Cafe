@@ -5,19 +5,20 @@ import Thumbnail from './Thumbnail';
 import './Details.css';
 // eslint-disable-next-line import/order
 import React from 'react';
+// eslint-disable-next-line import/order
+import { Outlet } from 'react-router-dom';
 
 function Details({ items }) {
   return (
     <div className="details-component">
-      <div>
-        {/* display item */}
-      </div>
+      <Outlet />
       <div className="details-component-sidebar">
         {items.map((item) => (
           <Thumbnail
             key={item.itemId}
             image={itemImages[item.imageId]}
             title={item.title}
+            itemId={item.itemId}
           />
         ))}
       </div>
