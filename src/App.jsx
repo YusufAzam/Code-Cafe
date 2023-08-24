@@ -3,10 +3,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  BrowserRouter as Router,
+  Route,
+  BrowserRouter as Router, Routes,
 } from 'react-router-dom';
+import Details from './components/Details';
 import Header from './components/Header';
 import Home from './components/Home';
+import NotFound from './components/NotFound';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -19,7 +22,11 @@ function App() {
   return (
     <Router>
       <Header />
-      <Home items={items} />
+      <Routes>
+        <Route path="details" element={<Details items={items} />} />
+        <Route path="/" element={<Home items={items} />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </Router>
   );
 }
