@@ -16,21 +16,33 @@ function App() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/items').then((result) => setItems(result.data))
-      // eslint-disable-next-line no-console
-      .catch(console.error);
+    const callAxious = async () => {
+      const result = await axios.get('/api/items');
+      setItems(result.data);
+    };
+    callAxious();
+    // axios.get('/api/items').then((result) => setItems(result.data))
+    //   .catch(console.error);
   }, []);
+
+  if (items.length === 0) {
+    return <div>Loading...</div>;
+  }
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route path="/details" element={<Details items={items} />}>
-          <Route path=":id" element={<DetailItem />} />
-          <Route index element={<div>No Item Selected</div>} />
-        </Route>
-        <Route path="/" element={<Home items={items} />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {items.length === 0
+        ? <div>Loading...</div>
+        : (
+          <Routes>
+            <Route path="/details" element={<Details items={items} />}>
+              <Route path=":id" element={<DetailItem items={items} />} />
+              <Route index element={<div>No Item Selected</div>} />
+            </Route>
+            <Route path="/" element={<Home items={items} />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        )}
     </Router>
   );
 }
