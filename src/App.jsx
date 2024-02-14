@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 // eslint-disable-next-line import/no-unresolved
 import { cartReducer, initialCartState } from 'reducers/cartReducer';
+// eslint-disable-next-line import/no-unresolved
+import Cart from 'components/Cart';
 import DetailItem from './components/DetailItem';
 import Details from './components/Details';
 import Header from './components/Header';
@@ -40,6 +42,7 @@ function App() {
               <Route path=":id" element={<DetailItem items={items} dispatch={dispatch} />} />
               <Route index element={<div>No Item Selected</div>} />
             </Route>
+            <Route path="/cart" element={<Cart cart={cart} items={items} dispatch={dispatch} />} />
             <Route path="/" element={<Home items={items} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

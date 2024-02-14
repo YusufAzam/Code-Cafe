@@ -2,6 +2,7 @@
 export const initialCartState = [];
 export const CartTypes = {
   ADD: 'Add',
+  REMOVE: 'Remove',
 };
 
 // eslint-disable-next-line max-len
@@ -18,8 +19,11 @@ export const cartReducer = (state = initialCartState, action) => {
       }
       return [
         ...state,
-        { id: action.itemId, quantity: 1 },
+        { itemId: action.itemId, quantity: 1 },
       ];
+    }
+    case CartTypes.REMOVE: {
+      return state.filter((item) => item.itemId !== action.itemId);
     }
     default: {
       throw new Error(`Invalid action types ${action.type}`);

@@ -7,7 +7,6 @@ import CartIcon from '../images/cart.svg';
 
 function Header({ cart }) {
   const cartQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
-  console.log(cartQuantity, ' <------');
   return (
     <header className="header-component">
       <Link to="/">
@@ -15,7 +14,7 @@ function Header({ cart }) {
         <h1>Code Cafe</h1>
       </Link>
       <div className="menu">
-        <Link to="#todo">
+        <Link to="/cart">
           <img src={CartIcon} alt="Cart" />
           <div className="badge">{cartQuantity}</div>
         </Link>
