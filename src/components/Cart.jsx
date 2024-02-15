@@ -4,11 +4,11 @@ import ItemType from '../types/item';
 import CartRow from './CartRow';
 
 function Cart({ cart, items, dispatch }) {
-  const subTotal = cart.length === 0 ? 0 : cart.reduce((acc, item) => {
-    console.log(item.itemId);
-    return acc;
-    // return (item.quantity) + acc;
-  });
+  const subTotal = cart.reduce((acc, item) => {
+    const detailItem = items.find((i) => i.itemId === item.itemId);
+    const itemPrice = detailItem.salePrice ?? detailItem.price;
+    return item.quantity * (itemPrice + acc);
+  }, 0);
   return (
     <div className="cart-component">
       <h2>Your Cart</h2>

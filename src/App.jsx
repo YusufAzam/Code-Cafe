@@ -24,8 +24,6 @@ function App() {
       setItems(result.data);
     };
     callAxious();
-    // axios.get('/api/items').then((result) => setItems(result.data))
-    //   .catch(console.error);
   }, []);
 
   if (items.length === 0) {
