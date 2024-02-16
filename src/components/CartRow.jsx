@@ -9,7 +9,6 @@ function CartRow({ cartItem, items, dispatch }) {
   const removeItemFromCart = () => {
     dispatch({ type: CartTypes.REMOVE, itemId: item.itemId });
   };
-  // css needs updating for button
   return (
     <tr>
       <td>{cartItem.quantity}</td>

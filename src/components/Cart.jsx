@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes, { arrayOf } from 'prop-types';
 import ItemType from '../types/item';
 import CartRow from './CartRow';
+import './Cart.css';
 
 function Cart({ cart, items, dispatch }) {
   const subTotal = cart.reduce((acc, item) => {
@@ -32,6 +33,24 @@ function Cart({ cart, items, dispatch }) {
               Subtotal: $
               {subTotal}
             </div>
+            <h2>Checkout</h2>
+            <form>
+              <label htmlFor="name">
+                Name
+                <input id="name" type="text" />
+              </label>
+              <label htmlFor="phone">
+                Phone Number
+                <input id="phone" type="tel" />
+              </label>
+              <label htmlFor="zipCode">
+                Zip Code
+                <input id="zipCode" type="text" maxLength={5} inputMode="numeric" />
+              </label>
+              <button type="submit">
+                Order now
+              </button>
+            </form>
           </>
         )}
     </div>
